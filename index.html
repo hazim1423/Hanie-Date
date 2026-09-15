@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Question For Hanie 💌</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(10, 10, 25, 0.85), rgba(10, 10, 25, 0.85)),
+        repeating-linear-gradient(
+            0deg,
+            #15152b 0px,
+            #15152b 2px,
+            #101020 2px,
+            #101020 4px
+        );
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.03) 0px,
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+    z-index: 10;
+}
+
+.game {
+    width: min(92%, 650px);
+    min-height: 520px;
+    border: 4px solid #fff;
+    box-shadow:
+        0 0 0 6px #29294a,
+        0 0 35px rgba(255, 80, 180, 0.35);
+    background: #111126;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.game-header {
+    color: #ff5bbd;
+    font-size: 12px;
+    margin-bottom: 35px;
+}
+
+.heart {
+    font-size: 55px;
+    animation: float 1.5s infinite ease-in-out;
+    margin-bottom: 25px;
+}
+
+h1 {
+    color: #ffe66d;
+    font-size: 20px;
+    line-height: 1.7;
+    text-shadow: 3px 3px #8b3d70;
+}
+
+p {
+    font-size: 11px;
+    line-height: 2;
+    color: #eee;
+}
+
+.screen {
+    display: none;
+    animation: fadeIn 0.35s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+button {
+    font-family: 'Press Start 2P', monospace;
+    border: 0;
+    padding: 16px 24px;
+    margin: 10px;
+    font-size: 11px;
+    cursor: pointer;
+    background: #ff5bbd;
+    color: white;
+    box-shadow: 5px 5px 0 #8b3d70;
+    transition: 0.15s;
+}
+
+button:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 #8b3d70;
+}
+
+.yes {
+    background: #58d68d;
+    box-shadow: 5px 5px 0 #287a4b;
+}
+
+.no {
+    background: #ff6b6b;
+    box-shadow: 5px 5px 0 #9b3030;
+    position: relative;
+}
+
+.choice-area {
+    margin-top: 30px;
+    min-height: 100px;
+    position: relative;
+}
+
+.final {
+    color: #ffe66d;
+    font-size: 13px;
+    line-height: 2.2;
+}
+
+.star {
+    position: absolute;
+    color: #ffe66d;
+    animation: blink 1s infinite alternate;
+}
+
+.star:nth-child(1) { top: 20px; left: 25px; }
+.star:nth-child(2) { top: 70px; right: 35px; animation-delay: .3s; }
+.star:nth-child(3) { bottom: 35px; left: 60px; animation-delay: .6s; }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes blink {
+    from { opacity: .2; }
+    to { opacity: 1; }
+}
+
+@media(max-width:500px) {
+    .game {
+        min-height: 550px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 9px;
+    }
+
+    button {
+        font-size: 9px;
+        padding: 14px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="scanlines"></div>
+
+<div class="game">
+
+    <div class="star">✦</div>
+    <div class="star">✦</div>
+    <div class="star">✦</div>
+
+    <div class="game-header">
+        ♥ PLAYER 1: HANIE ♥
+    </div>
+
+    <!-- SCREEN 1 -->
+    <div class="screen active" id="screen1">
+        <div class="heart">💌</div>
+
+        <h1>HI HANIE!</h1>
+
+        <p>
+            I hope you're doing well<br>
+            and having a really good day.
+        </p>
+
+        <p>
+            I have a little question for you...<br>
+            Don't worry, it's nothing scary. 😌
+        </p>
+
+        <p>
+            Just press NEXT and see where<br>
+            this little adventure takes you.
+        </p>
+
+        <button onclick="nextScreen(2)">NEXT ▶</button>
+    </div>
+
+
+    <!-- SCREEN 2 -->
+    <div class="screen" id="screen2">
+
+        <div class="heart">📅</div>
+
+        <h1>QUESTION #01</h1>
+
+        <p>
+            Are you free on<br>
+            <span style="color:#ffe66d;">[DATE]</span>?
+        </p>
+
+        <p>
+            (I'll confirm the exact time<br>
+            and details with you later 👀)
+        </p>
+
+        <div class="choice-area">
+            <button class="yes" onclick="nextScreen(3)">
+                YES ♥
+            </button>
+
+            <button class="no" onclick="moveNo(this)">
+                NO
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- SCREEN 3 -->
+    <div class="screen" id="screen3">
+
+        <div class="heart">🎮</div>
+
+        <h1>QUESTION #02</h1>
+
+        <p>
+            Would you let me take you<br>
+            on a little date? 👀
+        </p>
+
+        <p>
+            The place is still a mystery<br>
+            for now... but I promise<br>
+            I'll make it worth it. ✨
+        </p>
+
+        <div class="choice-area">
+            <button class="yes" onclick="nextScreen(4)">
+                YES ♥
+            </button>
+
+            <button class="no" onclick="moveNo(this)">
+                NO
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- SCREEN 4 -->
+    <div class="screen" id="screen4">
+
+        <div class="heart">💖</div>
+
+        <h1>MISSION ACCEPTED!</h1>
+
+        <p class="final">
+            Dress code?<br><br>
+
+            JUST BE YOU. ✨
+        </p>
+
+        <p>
+            I'll take care of the rest.<br>
+            You just show up with that<br>
+            cute smile of yours. :)
+        </p>
+
+        <p style="color:#ff5bbd;">
+            SEE YOU THERE, HANIE ♥
+        </p>
+
+        <div style="margin-top:30px;">
+            <span style="color:#ffe66d;">★ DATE QUEST COMPLETE ★</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function nextScreen(number) {
+
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+    });
+
+    document.getElementById('screen' + number)
+        .classList.add('active');
+}
+
+
+// The NO button refuses to cooperate 😂
+function moveNo(button) {
+
+    const area = button.parentElement;
+    const areaRect = area.getBoundingClientRect();
+
+    const maxX = areaRect.width - button.offsetWidth;
+    const maxY = 70;
+
+    const randomX = Math.random() * maxX - maxX / 2;
+    const randomY = Math.random() * maxY - maxY / 2;
+
+    button.style.transform =
+        `translate(${randomX}px, ${randomY}px)`;
+
+    button.innerText = randomNoText();
+}
+
+
+function randomNoText() {
+
+    const messages = [
+        "NOPE 😭",
+        "TRY AGAIN",
+        "TOO SLOW 👀",
+        "NAH 😭",
+        "YOU SURE?",
+        "NO ESCAPE 😂",
+        "WRONG BUTTON",
+        "HEHE NO"
+    ];
+
+    return messages[Math.floor(Math.random() * messages.length)];
+}
+
+</script>
+
+</body>
+</html>
